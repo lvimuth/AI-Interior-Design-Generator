@@ -3,9 +3,11 @@
 import { useUser } from "@clerk/nextjs";
 import axios from "axios";
 import React, { useEffect } from "react";
+import { UserDetailContext } from "./_context/UserDetailsContext";
 
 function Provider({ children }) {
   const { user } = useUser();
+  const [userDetails, setUserDetails] = useState();
 
   useEffect(() => {
     user && VerifyUser();
@@ -18,7 +20,11 @@ function Provider({ children }) {
     console.log(dataResult.data);
   };
 
-  return <div>{children}</div>;
+  return (
+    <UserDetailContext.Provider value={{}}>
+      <div>{children}</div>
+    </UserDetailContext.Provider>
+  );
 }
 
 export default Provider;
