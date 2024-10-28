@@ -7,3 +7,4 @@ export const Users = pgTable("users", {
   imageUrl: varchar("imageUrl").notNull(),
   credits: integer("credits").default(3),
 });
+
