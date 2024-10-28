@@ -1,15 +1,11 @@
-import localFont from "next/font/local";
 import "./globals.css";
+import { Outfit } from "next/font/google";
 
-
+const outfit = Outfit({ subsets: ["latin"] });
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
+      <body className={outfit.className}>{children}</body>
     </html>
   );
 }
