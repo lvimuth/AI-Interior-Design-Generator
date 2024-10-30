@@ -7,6 +7,8 @@ import DesignType from "./_components/DesignType";
 import AdditionalReq from "./_components/AdditionalReq";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { storage } from "../../../../config/firebaseConfig";
 
 function CreateNew() {
   const [formData, setFormData] = useState([]);
@@ -20,14 +22,28 @@ function CreateNew() {
 
   const GenerateAIImage = async () => {
     try {
+      const rawImageURL = await SaveRawImageToFirebase();
       const result = await axios.post("/api/redesign-room", formData);
-      console.log("Result:", result);
+      console.log("Result:", result.data);
     } catch (error) {
       console.error(
         "Error generating AI image:",
         error.response ? error.response.data : error.message
       );
     }
+  };
+
+  const SaveRawImageToFirebase = async () => {
+    const fileName = Date.now() + "_raw.png";
+    const imageRef = ref(storage, "room-desing/", fileName);
+
+    await uploadBytes(imageRef, formData.image).then((resp) => {
+      console.log("File uploaded");
+    });
+
+    const downloadURL = await getDownloadURL(imageRef);
+    console.log("Download URL:", downloadURL);
+    return downloadURL;
   };
 
   return (
