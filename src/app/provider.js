@@ -15,14 +15,13 @@ function Provider({ children }) {
 
   // Verify User
   const VerifyUser = async () => {
-    const dataResult = await axios.post("api/verify-user/", {
+    const dataResult = await axios.post("/api/verify-user/", {
       user: user,
     });
     setUserDetails(dataResult.data.result);
     console.log(dataResult.data);
   };
 
-  
   return (
     <UserDetailContext.Provider value={{ userDetails, setUserDetails }}>
       <div>{children}</div>

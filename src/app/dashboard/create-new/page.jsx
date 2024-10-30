@@ -1,7 +1,14 @@
+"use client";
+
 import React from "react";
 import ImageSelection from "./_components/ImageSelection";
+import RoomType from "./_components/RoomType";
 
 function CreateNew() {
+  const onHandleInputChange = (value, fieldName) => {
+    // Your input change logic here
+  };
+
   return (
     <div>
       <h2 className="font-bold text-4xl text-primary text-center">
@@ -13,8 +20,20 @@ function CreateNew() {
       </p>
       <div className="grid grid-cols-1 md:grid-cols-2 items-center justify-center mt-10">
         {/* Image upload section */}
-        <ImageSelection />
+        <ImageSelection
+          selectedImage={(value) => onHandleInputChange(value, "image")}
+        />
         {/* Form input selection */}
+
+        <div>
+          {/* Room Type */}
+          <RoomType />
+          {/* Design Type */}
+
+          {/* Additional Requirement text area */}
+
+          {/* Button to generate image */}
+        </div>
       </div>
     </div>
   );
