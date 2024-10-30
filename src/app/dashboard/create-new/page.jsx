@@ -4,6 +4,7 @@ import React from "react";
 import ImageSelection from "./_components/ImageSelection";
 import RoomType from "./_components/RoomType";
 import DesignType from "./_components/DesignType";
+import AdditionalReq from "./_components/AdditionalReq";
 
 function CreateNew() {
   const onHandleInputChange = (value, fieldName) => {
@@ -32,8 +33,17 @@ function CreateNew() {
             selectedRoomType={(value) => onHandleInputChange(value, "roomType")}
           />
           {/* Design Type */}
-          <DesignType />
+          <DesignType
+            selectedDesignType={(value) =>
+              onHandleInputChange(value, "designType")
+            }
+          />
           {/* Additional Requirement text area */}
+          <AdditionalReq
+            additionalReqInput={(value) =>
+              onHandleInputChange(value, "additionalReq")
+            }
+          />
 
           {/* Button to generate image */}
         </div>
