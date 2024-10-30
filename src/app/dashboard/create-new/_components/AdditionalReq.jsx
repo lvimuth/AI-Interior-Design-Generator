@@ -1,7 +1,7 @@
 import React from "react";
 import { Textarea } from "@/components/ui/textarea";
 
-function AdditionalReq(additionalReqInput) {
+function AdditionalReq({ additionalReqInput }) {
   return (
     <div className="mt-5">
       <label htmlFor="" className="text-gray-400">
