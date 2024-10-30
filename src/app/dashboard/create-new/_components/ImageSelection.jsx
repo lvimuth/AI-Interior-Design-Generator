@@ -8,7 +8,7 @@ function ImageSelection() {
       <div className=" mt-3">
         <label htmlFor="upload-image">
           <div
-            className={`p-28 border rounded-xl border-dotted flex justify-center items-center border-primary bg-gray-200`}
+            className={`p-28 border rounded-xl border-dotted flex justify-center items-center border-gray-400 bg-gray-200 cursor-pointer hover:shadow-lg`}
           >
             <Image
               src={"/imageupload.png"}
