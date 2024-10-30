@@ -6,6 +6,7 @@ import RoomType from "./_components/RoomType";
 import DesignType from "./_components/DesignType";
 import AdditionalReq from "./_components/AdditionalReq";
 import { Button } from "@/components/ui/button";
+import axios from "axios";
 
 function CreateNew() {
   const [formData, setFormData] = useState([]);
@@ -15,6 +16,18 @@ function CreateNew() {
       [fieldName]: value,
     }));
     console.log(formData);
+  };
+
+  const GenerateAIImage = async () => {
+    try {
+      const result = await axios.post("/api/redesign-room", formData);
+      console.log("Result:", result);
+    } catch (error) {
+      console.error(
+        "Error generating AI image:",
+        error.response ? error.response.data : error.message
+      );
+    }
   };
 
   return (
@@ -53,7 +66,9 @@ function CreateNew() {
 
           {/* Button to generate image */}
 
-          <Button className="w-full mt-5">Generate</Button>
+          <Button className="w-full mt-5" onClick={GenerateAIImage}>
+            Generate
+          </Button>
           <p className="text-sm text-gray-400 mb-52">
             NOTE: 1 credit will user to redesign your room
           </p>
