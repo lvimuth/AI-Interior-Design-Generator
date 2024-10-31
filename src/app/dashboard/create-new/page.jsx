@@ -23,7 +23,12 @@ function CreateNew() {
   const GenerateAIImage = async () => {
     try {
       const rawImageURL = await SaveRawImageToFirebase();
-      const result = await axios.post("/api/redesign-room", formData);
+      const result = await axios.post("/api/redesign-room", {
+        imageURL: rawImageURL,
+        roomType: formData.roomType,
+        designType: formData.designType,
+        additionalReq: formData.additionalReq,
+      });
       console.log("Result:", result.data);
     } catch (error) {
       console.error(
@@ -35,7 +40,7 @@ function CreateNew() {
 
   const SaveRawImageToFirebase = async () => {
     const fileName = Date.now() + "_raw.png";
-    const imageRef = ref(storage, "room-desing/", fileName);
+    const imageRef = ref(storage, "room-design/" + fileName);
 
     await uploadBytes(imageRef, formData.image).then((resp) => {
       console.log("File uploaded");
